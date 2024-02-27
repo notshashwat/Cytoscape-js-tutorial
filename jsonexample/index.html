@@ -4,7 +4,10 @@
 <head>
     <title></title>
     <script src="cytoscape.min.js"></script>
-    <script src="jquery.min.js"></script>
+    <script type="text/javascript"
+    src="networks.js"></script>
+    <script type="text/javascript"
+    src="styles.js"></script>
 </head>
 
 <style>
@@ -20,37 +23,19 @@
 <body>
     <div id="cy"></div>
     <script>
-        $.getJSON("cyto.json", function (data) {
-            console.log(data);
-            var cy = cytoscape({
+        var elements = networks["HIV-human PPI"]["elements"];
+        var style = styles[0]["style"]
+        console.log(style)
+        
+        var cy = cytoscape({
                 container: document.getElementById('cy'),
-                elements: data,
-                style: [
-                    {
-                        selector: 'node',
-                        style: {
-                            'label': 'data(label)',
-                            'width': '60px',
-                            'height': '60px',
-                            'color': 'blue',
-                            'background-fit': 'contain',
-                            'background-clip': 'none'
-                        }
-                    }, {
-                        selector: 'edge',
-                        style: {
-                           'text-background-color': 'yellow',
-                            'text-background-opacity': 0.4,
-                            'width': '6px',
-                            'target-arrow-shape': 'triangle',
-                            'control-point-step-size': '140px'
-                        }
-                    }
-                ],
+                elements: elements,
+                style: style,
+               
                 layout: {
-                    name: 'circle'
+                    name: 'cose'
                 }
             });
-        });
+        
     </script>
 </body>
